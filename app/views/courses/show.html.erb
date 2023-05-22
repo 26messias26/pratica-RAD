@@ -1,0 +1,13 @@
+
+<p style="color: green"><%= notice %></p>
+
+<%= render @course %>
+
+<div>
+  <%= button_to "Deletar curso", @course, method: :delete %>
+  <br>
+  
+  <%= link_to "Editar curso", edit_course_path(@course) %> |
+  <%= link_to "Voltar para cursos", courses_path %>
+
+</div>

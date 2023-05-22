@@ -1,0 +1,34 @@
+<%= form_with(model: person) do |form| %>
+  <% if person.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :idade, style: "display: block" %>
+    <%= form.number_field :idade %>
+  </div>
+  <%= link_to_add_association("Novo contato", form, :contacts) %>
+  <div id="contacts">
+    <%= form.fields_for :contacts do |contacts_fields|%>
+      <%= render partial: "contact_fields", locals: {f: contacts_fields}%>
+    <%end%>
+
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
